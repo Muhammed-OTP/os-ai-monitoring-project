@@ -1,0 +1,23 @@
+global:
+  scrape_interval: 5s
+
+scrape_configs:
+  - job_name: prometheus
+    static_configs:
+      - targets: ['prometheus:9090']
+
+  - job_name: ai_service
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['ai:8000']
+
+  - job_name: cadvisor
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['cadvisor:8080']
+
+  # Optional GPU metrics (requires NVIDIA GPU + drivers + nvidia-container-toolkit)
+  # - job_name: dcgm
+  #   metrics_path: /metrics
+  #   static_configs:
+  #     - targets: ['dcgm-exporter:9400']
